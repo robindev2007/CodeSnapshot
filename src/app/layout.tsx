@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Providers from "@/redux/provider";
+import { Toaster } from "sonner";
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jet",
+});
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} ${jetbrainsMono.variable}`}>
+        <Providers>
+          <Toaster theme="dark" richColors position="top-right" />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
