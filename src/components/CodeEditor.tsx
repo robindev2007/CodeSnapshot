@@ -2,17 +2,16 @@
 import { cn } from "@/lib/utils";
 import { setTitle } from "@/redux/Features/CodeEditor/editorSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
-import { EditableCodeEditor } from "./EditableCodeEditor";
-import HljsCodeEditor from "./HljsCodeEditor";
+import React, { forwardRef } from "react";
 import { customThemes } from "@/lib/Themes";
+import { EditorBody } from "./Editor";
 
-const CodeEditor = forwardRef<HTMLDivElement>((props, ref) => {
+export const CodeEditor = forwardRef<HTMLDivElement>(({}, nodeDivRef) => {
   const editorState = useAppSelector((state) => state.editor);
 
   return (
     <div
-      ref={ref}
+      ref={nodeDivRef}
       className={cn(
         "relative transition-all duration-300 ease-linear",
         editorState.darkMode && "dark",
@@ -26,16 +25,13 @@ const CodeEditor = forwardRef<HTMLDivElement>((props, ref) => {
     >
       <div className="overflow-hidden rounded-lg bg-editor/75 shadow-mac backdrop-blur-3xl">
         <Header />
-        <EditableCodeEditor />
+        <EditorBody />
       </div>
     </div>
   );
 });
 
-export default CodeEditor;
-
 export const Header = () => {
-  const editorState = useAppSelector((state) => state.editor);
   const dispatch = useAppDispatch();
   return (
     <div className="flex items-center justify-between px-3 py-2">
@@ -48,7 +44,6 @@ export const Header = () => {
         type="text"
         className="w-fit border-none bg-transparent text-center text-sm font-medium text-[#9CA3AF] outline-none"
         placeholder="untitled-1"
-        // value={editorState.title}
         onChange={(e) => dispatch(setTitle(e.target.value))}
       />
       <div className="flex gap-2 opacity-0">

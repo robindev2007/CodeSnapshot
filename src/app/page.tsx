@@ -1,12 +1,11 @@
 "use client";
 import { useRef, useState } from "react";
 import Resizeable from "@/components/Resizeable";
-import CodeEditor from "@/components/CodeEditor";
-import DomToImage from "dom-to-image";
 import ControlPanal from "@/components/home-page/ControlPanal";
-import HljsCodeEditor from "@/components/HljsCodeEditor";
 import { useAppSelector } from "@/redux/store";
 import { customThemes } from "@/lib/Themes";
+import { CodeEditor } from "@/components/CodeEditor";
+import MainEditor from "@/components/Editor/MainEditor";
 
 export default function Home() {
   const editorRef = useRef<HTMLDivElement>(null!);
@@ -24,10 +23,7 @@ export default function Home() {
                 .light as React.CSSProperties)
         }
       >
-        <Resizeable>
-          <CodeEditor ref={editorRef} />
-          {/* <HljsCodeEditor /> */}
-        </Resizeable>
+        <MainEditor />
       </div>
 
       <ControlPanal node={editorRef.current} />

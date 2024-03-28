@@ -1,15 +1,10 @@
 import { getRandomCode } from "@/lib/constance";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import HljsCodeEditor from "./HljsCodeEditor";
-import hljs from "highlight.js";
-import { setDetactedLanguage } from "@/redux/Features/CodeEditor/editorSlice";
+import HilightedCode from "./HljsCodeEditor";
 
-export const EditableCodeEditor = () => {
+export const EditorBody = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [code, setCode] = useState("");
-  const editorState = useAppSelector((state) => state.editor);
-  const dispatch = useAppDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCode(e.target.value);
@@ -39,9 +34,7 @@ export const EditableCodeEditor = () => {
         onChange={handleChange}
       />
 
-      <HljsCodeEditor code={code} />
+      <HilightedCode code={code} />
     </div>
   );
 };
-
-// npm r net tls language-classifier

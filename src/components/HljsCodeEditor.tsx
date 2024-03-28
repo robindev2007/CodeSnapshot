@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import hljs from "highlight.js";
 
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import {
-  setDetactedLanguage,
-  setLanguage,
-} from "@/redux/Features/CodeEditor/editorSlice";
-import { customThemes } from "@/lib/Themes";
+import { setDetactedLanguage } from "@/redux/Features/CodeEditor/editorSlice";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
 import { getLanguageNameByClassName } from "@/lib/utils";
 
-export default function HljsCodeEditor({ code }: { code: string }) {
+export default function HilightedCode({ code }: { code: string }) {
   const codeRef = useRef<HTMLDivElement>(null!);
 
   const editorState = useAppSelector((state) => state.editor);
