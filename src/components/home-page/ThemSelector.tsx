@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/select";
 import { useAppDispatch } from "@/redux/store";
 import { setTheme } from "@/redux/Features/CodeEditor/editorSlice";
+import { customThemes } from "@/lib/Themes";
+import { ThemesNameT } from "@/types/types";
 
 function ThemSelector() {
   const dispatch = useAppDispatch();
@@ -20,12 +22,12 @@ function ThemSelector() {
 
       <Select onValueChange={(value) => dispatch(setTheme(value))}>
         <SelectTrigger className="w-[120px]">
-          <SelectValue placeholder="atomOneDark" />
+          <SelectValue placeholder="Candy" />
         </SelectTrigger>
         <SelectContent>
-          {Object.keys(Themes).map((theme) => (
+          {Object.keys(customThemes).map((theme) => (
             <SelectItem key={theme} className="text-xs" value={theme}>
-              {theme}
+              {customThemes[theme as ThemesNameT].name}
             </SelectItem>
           ))}
         </SelectContent>

@@ -28,6 +28,7 @@ export const SaveDomAsImage = async ({
       alignItems: "start",
       justifyContent: "start",
     },
+
     height,
     width,
   };

@@ -52,11 +52,11 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
         editor: {
-          DEFAULT: "hsl(var(--editor-background) / <alpha-value> )",
+          DEFAULT: "hsl(var(--editor-background))",
         },
       },
       borderRadius: {
@@ -79,7 +79,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        mac: "var(--mac-border)",
+        mac: "var(--mac-shadow)",
       },
       backgroundImage: {
         stripes: " var(--strips)",

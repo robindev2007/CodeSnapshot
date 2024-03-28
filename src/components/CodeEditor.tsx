@@ -1,76 +1,32 @@
 "use client";
-import { getRandomCode } from "@/lib/constance";
 import { cn } from "@/lib/utils";
 import { setTitle } from "@/redux/Features/CodeEditor/editorSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { forwardRef, useEffect, useRef, useState } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
-import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import * as Themes from "react-syntax-highlighter/dist/esm/styles/hljs";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { EditableCodeEditor } from "./EditableCodeEditor";
+import HljsCodeEditor from "./HljsCodeEditor";
+import { customThemes } from "@/lib/Themes";
 
 const CodeEditor = forwardRef<HTMLDivElement>((props, ref) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [code, setCode] = useState(getRandomCode());
-
   const editorState = useAppSelector((state) => state.editor);
 
   return (
     <div
       ref={ref}
       className={cn(
-        "dark relative transition-all duration-300 ease-in-out",
-        !editorState.darkMode && "lite",
+        "relative transition-all duration-300 ease-linear",
+        editorState.darkMode && "dark",
       )}
       style={{
         padding: `${editorState.padding}px`,
-        backgroundImage: editorState.background
-          ? `linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248))`
-          : "",
+        background: editorState.background
+          ? `linear-gradient(140deg,${customThemes[editorState.theme].background.from},${customThemes[editorState.theme].background.to}`
+          : "transparent",
       }}
     >
-      <div
-        className={cn(
-          "shadow-mac bg-editor overflow-hidden rounded-md backdrop-blur-3xl",
-        )}
-      >
-        <div>
-          <Header />
-          <div
-            role="button"
-            tabIndex={0}
-            onKeyDown={() => textareaRef.current?.focus()}
-            onClick={() => textareaRef.current?.focus()}
-            className="relative flex grid-cols-1"
-          >
-            <textarea
-              className="absolute inset-0 left-0 top-0 h-full resize-none overflow-hidden bg-transparent px-3 py-5 font-jet text-transparent caret-white outline-none"
-              ref={textareaRef}
-              value={code}
-              autoComplete="off"
-              autoCorrect="off"
-              spellCheck="false"
-              autoCapitalize="off"
-              data-enable-grammarly="false"
-              onChange={(e) => setCode(e.target.value)}
-            />
-            <SyntaxHighlighter
-              language={editorState.language}
-              style={
-                (Themes as { [key: string]: typeof Themes.a11yDark })[
-                  editorState.theme
-                ]
-              }
-              wrapLongLines
-              wrapLines
-              customStyle={{
-                flex: "1",
-                background: "transparent",
-                padding: "20px 12px",
-              }}
-              children={code}
-            />
-          </div>
-        </div>
+      <div className="overflow-hidden rounded-lg bg-editor/75 shadow-mac backdrop-blur-3xl">
+        <Header />
+        <EditableCodeEditor />
       </div>
     </div>
   );

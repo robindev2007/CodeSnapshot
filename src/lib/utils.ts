@@ -1,4 +1,5 @@
 "use client";
+import { LanguagesT } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -25,4 +26,22 @@ export const convertHexToRgbaWithOpacity = (
   const rgbaColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
 
   return rgbaColor;
+};
+
+export const getLanguageClassNameByKey = (
+  languages: LanguagesT,
+  language: string,
+) => {
+  return Object.keys(languages).find(
+    (key) => languages[key].name === language && languages[key].className,
+  ) as string;
+};
+
+export const getLanguageNameByClassName = (
+  languages: LanguagesT,
+  className: string,
+) => {
+  return Object.keys(languages).find(
+    (key) => languages[key].className === className && languages[key].name,
+  ) as string;
 };

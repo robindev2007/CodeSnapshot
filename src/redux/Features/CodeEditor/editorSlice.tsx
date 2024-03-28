@@ -1,23 +1,26 @@
 "use client";
 
+import { ThemesNameT } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 export type EditorState = {
-  theme: string;
+  theme: ThemesNameT;
   background: boolean;
   darkMode: boolean;
   padding: 16 | 32 | 64 | 128;
-  language?: string;
+  language: string | undefined;
   title: string;
+  detactedLanguage: string | undefined;
 };
 
 const initialState: EditorState = {
-  theme: "atomOneDark",
+  theme: "candy",
   background: true,
   darkMode: true,
   padding: 64,
-  language: "javascipt",
-  title: "Untitled-1",
+  language: undefined,
+  title: "untitled-1",
+  detactedLanguage: undefined,
 };
 
 export const EditorSlice = createSlice({
@@ -39,8 +42,11 @@ export const EditorSlice = createSlice({
     setLanguage: (state, action) => {
       state.language = action.payload;
     },
+    setDetactedLanguage: (state, action) => {
+      state.detactedLanguage = action.payload;
+    },
     setTitle: (state, action) => {
-      state.language = action.payload;
+      state.title = action.payload;
     },
   },
 });
@@ -52,6 +58,7 @@ export const {
   setLanguage,
   setPadding,
   setTitle,
+  setDetactedLanguage,
 } = EditorSlice.actions;
 
 export const editorReducer = EditorSlice.reducer;

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { ResizableBox } from "react-resizable";
+import "react-resizable/css/styles.css";
 
 const Resizeable = ({ children }: { children: ReactNode }) => {
   return (
@@ -12,11 +13,11 @@ const Resizeable = ({ children }: { children: ReactNode }) => {
       className="borde relative !h-fit w-fit"
     >
       <div>
-        <div className="pointer-events-none absolute left-0 top-0 z-20 grid h-full w-[1px] -translate-x-1/2 items-center justify-center bg-white bg-opacity-40">
+        <div className="pointer-events-none absolute left-0 top-0 z-20 grid h-full w-[1px] -translate-x-1/2 items-center justify-center">
           <div className="h-3 w-3 rounded-full bg-white"></div>
         </div>
 
-        <div className="pointer-events-none absolute right-0 top-0 z-20 grid h-full w-[1px] translate-x-1/2 items-center justify-center bg-white bg-opacity-40">
+        <div className="pointer-events-none absolute right-0 top-0 z-20 grid h-full w-[1px] translate-x-1/2 items-center justify-center">
           <div className="h-3 w-3 rounded-full bg-white"></div>
         </div>
         {children}

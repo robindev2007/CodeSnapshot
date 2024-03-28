@@ -11,55 +11,46 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-    --editor-background: 0 0% 0%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --mac-border: 0 0 0 1px hsla(0, 0%, 100%, 0.3),
-      0 0 0 1.5px rgba(0, 0, 0, 0.8), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346.8 77.2% 49.8%;
+    --radius: 0.5rem;
+    --editor-background: 0 0% 100%;
+
+    --frame-shadow-border: rgba(0, 0, 0, 0.1);
+    --frame-highlight-border: hsla(0, 0%, 100%, 0.75);
+    --mac-shadow: 0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
       0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
       0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
       0 100px 80px rgba(0, 0, 0, 0.12);
-    --editor-background: 0 0% 100%;
+  }
+  .dark {
+    --editor-background: 0 0% 0%;
+
+    --frame-shadow-border: rgba(0, 0, 0, 0.8);
+    --frame-highlight-border: hsla(0, 0%, 100%, 0.3);
+    --mac-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3),
+      0 0 0 1.5px hsla(0, 0%, 0%, 0.8), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -75,83 +66,78 @@
 code,
 pre,
 textarea {
-  @apply min-h-10 !overflow-hidden font-jet;
+  @apply min-h-10 !overflow-hidden font-jet font-medium;
 }
 
-.l {
-  background-image: linear-gradient(
-    140deg,
-    rgb(165, 142, 251),
-    rgb(233, 191, 248)
-  );
+.hljs {
+  color: var(--syntax-text);
 }
 
-.bg-stripes {
+.hljs-subst,
+.hljs-tag {
+  color: var(--syntax-tag);
 }
 
-/* react resizeable */
-.react-resizable {
-  position: relative;
+.hljs-bullet,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-quote,
+.hljs-regexp {
+  color: var(--syntax-number);
 }
-.react-resizable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-sizing: border-box;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU4IiBoZWlnaHQ9IjQ1OCIgdmlld0JveD0iMCAwIDQ1OCA0NTgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjIyOSIgY3k9IjIyOSIgcj0iMjIwLjUiIGZpbGw9IiNEOUQ5RDkiIHN0cm9rZT0iIzRFNEU0RSIgc3Ryb2tlLXdpZHRoPSIxNyIvPgo8L3N2Zz4K");
-  background-position: bottom right;
-  padding: 0 3px 3px 0;
+
+.hljs-attr,
+.hljs-code,
+.hljs-section,
+.hljs-selector-class,
+.hljs-title {
+  color: var(--syntax-definition);
 }
-.react-resizable-handle-sw {
-  bottom: 0;
-  left: 0;
-  cursor: sw-resize;
-  transform: rotate(90deg);
+
+.hljs-strong {
+  font-weight: 700;
 }
-.react-resizable-handle-se {
-  bottom: 0;
-  right: 0;
-  cursor: se-resize;
+
+.hljs-emphasis {
+  font-style: italic;
 }
-.react-resizable-handle-nw {
-  top: 0;
-  left: 0;
-  cursor: nw-resize;
-  transform: rotate(180deg);
+
+.hljs-keyword,
+.hljs-name,
+.hljs-selector-tag {
+  color: var(--syntax-keyword);
 }
-.react-resizable-handle-ne {
-  top: 0;
-  right: 0;
-  cursor: ne-resize;
-  transform: rotate(270deg);
+
+.hljs-attribute,
+.hljs-property,
+.hljs-symbol {
+  color: var(--syntax-property);
 }
-.react-resizable-handle-w,
-.react-resizable-handle-e {
-  top: 50%;
-  margin-top: -10px;
-  cursor: ew-resize;
+
+.hljs-class .hljs-title,
+.hljs-params,
+.hljs-title.class_ {
+  color: var(--syntax-definition);
 }
-.react-resizable-handle-w {
-  left: 0;
-  transform: rotate(135deg);
+
+.hljs-addition,
+.hljs-built_in,
+.hljs-selector-attr,
+.hljs-selector-id,
+.hljs-selector-pseudo,
+.hljs-string {
+  color: var(--syntax-string);
 }
-.react-resizable-handle-e {
-  right: 0;
-  transform: rotate(315deg);
+
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable {
+  color: var(--syntax-variable);
 }
-.react-resizable-handle-n,
-.react-resizable-handle-s {
-  left: 50%;
-  margin-left: -10px;
-  cursor: ns-resize;
-}
-.react-resizable-handle-n {
-  top: 0;
-  transform: rotate(225deg);
-}
-.react-resizable-handle-s {
-  bottom: 0;
-  transform: rotate(45deg);
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: var(--syntax-comment);
 }
