@@ -31,12 +31,19 @@ function LanguageSelector() {
 
       <Select onValueChange={hangleLanguageChange}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder={"auto"} />
+          <SelectValue
+            className="capitalize"
+            placeholder={
+              editorState.detactedLanguage
+                ? editorState.detactedLanguage + " (Auto)"
+                : "auto"
+            }
+          />
         </SelectTrigger>
 
         <SelectContent>
           <SelectItem key={"Auto"} value="Auto">
-            {`${editorState.detactedLanguage?.toUpperCase()} (Auto)`}
+            {`${editorState.detactedLanguage ? editorState.detactedLanguage.toUpperCase() : "Auto"} (Auto)`}
           </SelectItem>
           {Object.keys(customLanguages).map((key) => (
             <SelectItem

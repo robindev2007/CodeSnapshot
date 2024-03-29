@@ -66,7 +66,7 @@
 code,
 pre,
 textarea {
-  @apply min-h-10 !overflow-hidden font-jet font-medium;
+  @apply min-h-10 !overflow-hidden !font-jet font-medium;
 }
 
 .hljs {
@@ -93,14 +93,6 @@ textarea {
 .hljs-selector-class,
 .hljs-title {
   color: var(--syntax-definition);
-}
-
-.hljs-strong {
-  font-weight: 700;
-}
-
-.hljs-emphasis {
-  font-style: italic;
 }
 
 .hljs-keyword,

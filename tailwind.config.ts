@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        jet: ["var(--font-jet)"],
+        jet: "var(--font-jet)",
       },
       colors: {
         border: "hsl(var(--border))",

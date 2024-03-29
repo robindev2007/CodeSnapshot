@@ -17,27 +17,44 @@ export default function HljsCodeEditor({ code }: { code: string }) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    hljs.configure({
-      languages: Object.keys(customLanguages).map(
-        (language) => customLanguages[language].name,
-      ),
-    });
+    try {
+      hljs.configure({
+        languages: Object.keys(customLanguages).map(
+          (language) => customLanguages[language].name,
+        ),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   useEffect(() => {
-    const { language, value } = hljs.highlightAuto(code);
-    if (!editorState.language) {
-      codeRef.current.innerHTML = value;
+    try {
+      if (editorState.language) {
+        const { language, value } = hljs.highlight(code, {
+          language: editorState.language,
+        });
+      }
+
+      const { language, value } = hljs.highlightAuto(code);
+
+      dispatch(setDetactedLanguage(language));
+
+      if (!editorState.language) {
+        codeRef.current.innerHTML = value;
+      }
+
+      if (code.trim().length === 0) return;
+
+      const languageName = Object.keys(customLanguages).find((value) => {
+        if (customLanguages[value].name === language)
+          return customLanguages[value].className;
+      });
+
+      dispatch(setDetactedLanguage(languageName));
+    } catch (error) {
+      console.log(error);
     }
-
-    if (code.trim().length === 0) return;
-
-    const languageName = Object.keys(customLanguages).find((value) => {
-      if (customLanguages[value].name === language)
-        return customLanguages[value].className;
-    });
-
-    dispatch(setDetactedLanguage(languageName));
   }, [code, editorState.language]);
 
   useEffect(() => {
@@ -54,7 +71,9 @@ export default function HljsCodeEditor({ code }: { code: string }) {
 
   return (
     <pre className="text-wrap px-3 py-5">
-      <code ref={codeRef}>{code}</code>
+      <code className="whitespace-pre-wrap" ref={codeRef}>
+        {code}
+      </code>
     </pre>
   );
 }

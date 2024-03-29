@@ -15,7 +15,7 @@ function ControlPanal({ node }: { node: HTMLDivElement }) {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="fixed bottom-2 left-1/2 flex w-max -translate-x-1/2 gap-3 rounded-md border border-opacity-80 bg-card bg-opacity-60 p-4 shadow-xl backdrop-blur md:gap-5">
+    <div className="fixed bottom-2 left-1/2 flex w-max -translate-x-1/2 gap-3 rounded-md border border-opacity-80 bg-card bg-opacity-60 p-4 text-sm shadow-xl backdrop-blur md:gap-5">
       <ThemSelector />
       <PaddingSelector />
       <SwitchWithLable

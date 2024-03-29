@@ -28,7 +28,7 @@ export const EditableCodeEditor = () => {
       className="relative flex grid-cols-1"
     >
       <textarea
-        className="absolute inset-0 left-0 top-0 h-full resize-none overflow-hidden bg-transparent px-3 py-5 font-jet text-transparent caret-white outline-none"
+        className="absolute inset-0 left-0 top-0 h-full resize-none overflow-hidden whitespace-pre-wrap bg-transparent px-3 py-5 text-transparent caret-white outline-none"
         ref={textareaRef}
         value={code}
         autoComplete="off"

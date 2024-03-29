@@ -32,6 +32,7 @@ const CodeEditor = forwardRef<HTMLDivElement>((props, ref) => {
   );
 });
 
+CodeEditor.displayName = "CodeEditor";
 export default CodeEditor;
 
 export const Header = () => {
