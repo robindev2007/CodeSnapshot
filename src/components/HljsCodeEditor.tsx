@@ -6,7 +6,6 @@ import {
   setDetactedLanguage,
   setLanguage,
 } from "@/redux/Features/CodeEditor/editorSlice";
-import { customThemes } from "@/lib/Themes";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
 import { getLanguageNameByClassName } from "@/lib/utils";
 
