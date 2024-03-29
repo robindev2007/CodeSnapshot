@@ -71,7 +71,7 @@ export default function HljsCodeEditor({ code }: { code: string }) {
 
   return (
     <pre className="text-wrap px-3 py-5">
-      <code className="whitespace-pre-wrap" ref={codeRef}>
+      <code className="hljs whitespace-pre-wrap" ref={codeRef}>
         {code}
       </code>
     </pre>

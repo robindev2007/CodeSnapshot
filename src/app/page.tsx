@@ -13,7 +13,7 @@ export default function Home() {
   const editorState = useAppSelector((state) => state.editor);
 
   return (
-    <div className="flex min-h-screen flex-col gap-6 bg-background text-foreground">
+    <div className="flex min-h-screen scroll-m-48 flex-col justify-center gap-6 bg-background text-foreground">
       <div
         className="flex justify-center"
         style={
