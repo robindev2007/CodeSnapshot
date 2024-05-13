@@ -7,29 +7,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { setLanguage } from "@/redux/Features/CodeEditor/editorSlice";
+import {
+  EditorState,
+  setLanguage,
+} from "@/redux/Features/CodeEditor/editorSlice";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
 import { getLanguageClassNameByKey } from "@/lib/utils";
 
-function LanguageSelector() {
+function LanguageSelector({
+  editorState,
+  changeLanguage,
+}: {
+  editorState: EditorState;
+  changeLanguage: (value: string) => void;
+}) {
   const dispatch = useAppDispatch();
-  const editorState = useAppSelector((state) => state.editor);
-
-  const hangleLanguageChange = (value: string) => {
-    console.log(value);
-    if (value === "Auto") {
-      dispatch(setLanguage(undefined));
-      return;
-    }
-
-    dispatch(setLanguage(value));
-  };
 
   return (
     <div className="grid gap-1">
       <span className="text-sm text-muted-foreground">Languages</span>
 
-      <Select onValueChange={hangleLanguageChange}>
+      <Select onValueChange={(e) => setLanguage(e)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue
             className="capitalize"

@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("./styles/hljs.css");
+
 :root {
+  color-scheme: dark;
   --strips: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
     linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
     linear-gradient(45deg, transparent 75%, #1d1d1d 0),
@@ -61,75 +64,45 @@
   body {
     @apply bg-background text-foreground;
   }
+  input,
+  textarea {
+    @apply border-none outline-none;
+  }
 }
 
-code,
-pre,
-textarea {
-  @apply min-h-10 !overflow-hidden !font-jet font-medium;
+.hljs-codes,
+.hljs-pre,
+.code-textarea {
+  text-size-adjust: none;
 }
 
-.hljs {
-  color: var(--syntax-text);
+.hljs-codes,
+.hljs-pre,
+.code-textarea {
+  @apply overflow-hidden whitespace-pre-wrap !font-jet font-medium;
 }
 
-.hljs-subst,
-.hljs-tag {
-  color: var(--syntax-tag);
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
 }
 
-.hljs-bullet,
-.hljs-link,
-.hljs-literal,
-.hljs-number,
-.hljs-quote,
-.hljs-regexp {
-  color: var(--syntax-number);
+/* *::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
 }
 
-.hljs-attr,
-.hljs-code,
-.hljs-section,
-.hljs-selector-class,
-.hljs-title {
-  color: var(--syntax-definition);
+*::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+} */
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-[#38383f];
 }
 
-.hljs-keyword,
-.hljs-name,
-.hljs-selector-tag {
-  color: var(--syntax-keyword);
+*::-webkit-scrollbar-thumb:hover {
+  @apply rounded-md bg-[#4b4b53];
 }
 
-.hljs-attribute,
-.hljs-property,
-.hljs-symbol {
-  color: var(--syntax-property);
-}
-
-.hljs-class .hljs-title,
-.hljs-params,
-.hljs-title.class_ {
-  color: var(--syntax-definition);
-}
-
-.hljs-addition,
-.hljs-built_in,
-.hljs-selector-attr,
-.hljs-selector-id,
-.hljs-selector-pseudo,
-.hljs-string {
-  color: var(--syntax-string);
-}
-
-.hljs-template-variable,
-.hljs-type,
-.hljs-variable {
-  color: var(--syntax-variable);
-}
-
-.hljs-comment,
-.hljs-deletion,
-.hljs-meta {
-  color: var(--syntax-comment);
+*::-webkit-scrollbar-thumb:active {
+  @apply rounded-md bg-[#5a5a66];
 }

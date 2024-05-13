@@ -7,14 +7,23 @@ import {
   setLanguage,
 } from "@/redux/Features/CodeEditor/editorSlice";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
-import { getLanguageNameByClassName } from "@/lib/utils";
+import { cn, getLanguageNameByClassName } from "@/lib/utils";
+import { customThemes } from "@/lib/Themes";
 
-export default function HljsCodeEditor({ code }: { code: string }) {
+export default function CodeHighlighter({
+  code,
+  className,
+}: {
+  code: string;
+  className?: string;
+  theme?: "dark" | "lite";
+}) {
   const codeRef = useRef<HTMLDivElement>(null!);
 
   const editorState = useAppSelector((state) => state.editor);
   const dispatch = useAppDispatch();
 
+  // configure hljs
   useEffect(() => {
     try {
       hljs.configure({
@@ -27,13 +36,15 @@ export default function HljsCodeEditor({ code }: { code: string }) {
     }
   }, []);
 
+  const highlightCode = () => {};
+
   useEffect(() => {
     try {
-      if (editorState.language) {
-        const { language, value } = hljs.highlight(code, {
-          language: editorState.language,
-        });
-      }
+      // if (editorState.language) {
+      //   const { language, value } = hljs.highlight(code, {
+      //     language: editorState.language,
+      //   });
+      // }
 
       const { language, value } = hljs.highlightAuto(code);
 
@@ -69,10 +80,19 @@ export default function HljsCodeEditor({ code }: { code: string }) {
   }, [editorState.language]);
 
   return (
-    <pre className="text-wrap px-3 py-5">
-      <code className="hljs whitespace-pre-wrap" ref={codeRef}>
-        {code}
-      </code>
-    </pre>
+    <div
+      style={
+        editorState.darkMode
+          ? (customThemes[editorState.theme].syntax.dark as React.CSSProperties)
+          : (customThemes[editorState.theme].syntax.dark as React.CSSProperties)
+      }
+      className="hljs"
+    >
+      <pre className={cn("hljs-pre hljs", className)}>
+        <code className="hljs hljs-codes" ref={codeRef}>
+          {code}
+        </code>
+      </pre>
+    </div>
   );
 }

@@ -11,6 +11,9 @@ export type EditorState = {
   language: string | undefined;
   title: string;
   detactedLanguage: string | undefined;
+  node: HTMLDivElement | undefined;
+  exporting: boolean;
+  codeEditorWidth?: number;
 };
 
 const initialState: EditorState = {
@@ -21,6 +24,8 @@ const initialState: EditorState = {
   language: undefined,
   title: "untitled-1",
   detactedLanguage: undefined,
+  node: undefined,
+  exporting: false,
 };
 
 export const EditorSlice = createSlice({
@@ -48,6 +53,15 @@ export const EditorSlice = createSlice({
     setTitle: (state, action) => {
       state.title = action.payload;
     },
+    setNode: (state, action) => {
+      state.node = action.payload;
+    },
+    setExporting: (state, action) => {
+      state.exporting = action.payload;
+    },
+    setCodeEditorWidth: (state, acton) => {
+      state.codeEditorWidth = acton.payload;
+    },
   },
 });
 
@@ -59,6 +73,9 @@ export const {
   setPadding,
   setTitle,
   setDetactedLanguage,
+  setNode,
+  setExporting,
+  setCodeEditorWidth,
 } = EditorSlice.actions;
 
 export const editorReducer = EditorSlice.reducer;

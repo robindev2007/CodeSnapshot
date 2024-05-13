@@ -36,7 +36,7 @@ export const SaveDomAsImage = async ({
   if (mode && mode == "Copy Image") {
     const imageSrc = await nodeToImage.toPng(node, config);
     const copy = await copyImgToClipboard(imageSrc);
-    return toast.success(copy);
+    return "success";
   }
 
   if (extensition === "png") {
@@ -46,7 +46,7 @@ export const SaveDomAsImage = async ({
       return toast.warning("Something went worng | Refresh Browser");
     }
 
-    return toast.success("File downloaded");
+    return "success";
   }
 
   if (extensition === "svg") {
@@ -56,7 +56,7 @@ export const SaveDomAsImage = async ({
       return toast.warning("Something went worng | Refresh Browser");
     }
 
-    return toast.success("File downloaded");
+    return "success";
   }
 
   if (extensition === "jpeg") {
@@ -66,7 +66,7 @@ export const SaveDomAsImage = async ({
       return toast.warning("Something went worng | Refresh Browser");
     }
 
-    return toast.success("File downloaded");
+    return "success";
   }
 };
 

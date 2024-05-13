@@ -1,8 +1,22 @@
-import React, { ReactNode } from "react";
+import React, { Dispatch, ReactNode } from "react";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 
-const Resizeable = ({ children }: { children: ReactNode }) => {
+const Resizeable = ({
+  children,
+  onResizeStart,
+  onResizeStop,
+  onResize,
+  setIsResizing,
+  className,
+}: {
+  children: ReactNode;
+  onResizeStop?: any;
+  onResizeStart?: any;
+  onResize: any;
+  className?: string;
+  setIsResizing: Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <ResizableBox
       width={520}
@@ -10,7 +24,11 @@ const Resizeable = ({ children }: { children: ReactNode }) => {
       minConstraints={[520, 100]}
       maxConstraints={[920, Infinity]} // Set maximum width and no maximum height
       resizeHandles={["e", "w"]}
-      className="borde relative !h-fit w-fit"
+      axis="both"
+      className="borde relative !h-fit w-full"
+      onResize={onResize}
+      onResizeStart={() => setIsResizing(true)}
+      onResizeStop={() => setIsResizing(false)}
     >
       <div>
         <div className="pointer-events-none absolute left-0 top-0 z-20 grid h-full w-[1px] -translate-x-1/2 items-center justify-center">
