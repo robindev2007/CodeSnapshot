@@ -1,5 +1,7 @@
 "use server";
 
+import { unstable_noStore as noStore } from "next/cache";
+
 const codes = [
   `module.exports = leftpad
   
@@ -43,6 +45,7 @@ export default function Command() {
 ];
 
 export const getRandomCode = () => {
+  noStore();
   const random = Math.floor(Math.random() * codes.length);
 
   return codes[random];

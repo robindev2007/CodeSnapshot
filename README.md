@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <a href="https://codesnapshot.vercel.app">
+    <img
+      src='https://github.com/robindev2007/CodeSnapshot/blob/main/public/android-chrome-512x512.png?raw=true'
+      alt="Hoppscotch"
+      height="120"
+    />
+  </a>
+  <h3>
+    <b>
+     Code Snapshot
+    </b>
+  </h3>
+  <b>
+    Open Source Code to Image Snapshot generator
+  </b>
+  <p>
 
-## Getting Started
+![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fhoppscotch.io&logo=hoppscotch)](https://codesnapshot.vercel.app)
 
-First, run the development server:
+  </p>
+ 
+  <br />
+  <p>
+    <a href="https://codesnapshot.vercel.app">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./images/banner.png">
+        <source media="(prefers-color-scheme: light)" srcset="./images/banner.png">
+        <img alt="Hoppscotch" src="./images/banner.png">
+      </picture>
+    </a>
+  </p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Examples:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  <img src='images/example-1.png' >
+  <img src='images/example-2.png'>
+  <img src='images/example-3.png'>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### **Features**
 
-## Learn More
+❤️ **Lightweight:** Crafted with minimalistic UI design.
 
-To learn more about Next.js, take a look at the following resources:
+⚡️ **Fast:** Show preview or snapshot realtime.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌈 **Thems:** Customize able code thees
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+🔥 **PWA:** Install as a [Progressive Web App](https://web.dev/progressive-web-apps) on your device.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Low RAM/memory and CPU usage
+- Add to Home Screen
+- Desktop PWA - ( Comming soon )
