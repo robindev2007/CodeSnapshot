@@ -7,7 +7,7 @@ import {
   setLanguage,
 } from "@/redux/Features/CodeEditor/editorSlice";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
-import { cn, getLanguageNameByClassName } from "@/lib/utils";
+import { cn, getLanguageName, getLanguageNameByClassName } from "@/lib/utils";
 import { customThemes } from "@/lib/Themes";
 
 export default function CodeHighlighter({
@@ -23,6 +23,27 @@ export default function CodeHighlighter({
   const editorState = useAppSelector((state) => state.editor);
   const dispatch = useAppDispatch();
 
+  const highlightCode = ({
+    codeLanguage,
+  }: {
+    codeLanguage?: string | null;
+  }) => {
+    if (!codeLanguage || !codeRef.current) {
+      const { language, value } = hljs.highlightAuto(code);
+      codeRef.current.innerHTML = value;
+      return;
+    }
+
+    console.log(codeLanguage);
+    const { value, language } = hljs.highlight(code, {
+      language: getLanguageName(codeLanguage) || "javascript",
+      ignoreIllegals: true,
+    });
+
+    console.log(value);
+
+    codeRef.current.innerHTML = value;
+  };
   // configure hljs
   useEffect(() => {
     try {
@@ -31,53 +52,55 @@ export default function CodeHighlighter({
           (language) => customLanguages[language].name,
         ),
       });
+      highlightCode({});
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  const highlightCode = () => {};
-
   useEffect(() => {
     try {
+      const language =
+        editorState.language || editorState.detactedLanguage || null;
+      highlightCode({ codeLanguage: language });
+
+      const detactedCode = hljs.highlightAuto(code);
+      dispatch(setDetactedLanguage(detactedCode.language));
+
       // if (editorState.language) {
-      //   const { language, value } = hljs.highlight(code, {
-      //     language: editorState.language,
+      //   const { value } = hljs.highlight(code, {
+      //     language:
+      //       getLanguageNameByClassName(customLanguages, editorState.language) ||
+      //       "javascript",
+      //     ignoreIllegals: true,
       //   });
+      //   codeRef.current.innerHTML = value;
       // }
 
-      const { language, value } = hljs.highlightAuto(code);
+      // if (code.trim().length === 0) return;
 
-      dispatch(setDetactedLanguage(language));
+      // const languageName = Object.keys(customLanguages).find((value) => {
+      //   if (customLanguages[value].name === language)
+      //     return customLanguages[value].className;
+      // });
 
-      if (!editorState.language) {
-        codeRef.current.innerHTML = value;
-      }
-
-      if (code.trim().length === 0) return;
-
-      const languageName = Object.keys(customLanguages).find((value) => {
-        if (customLanguages[value].name === language)
-          return customLanguages[value].className;
-      });
-
-      dispatch(setDetactedLanguage(languageName));
+      // dispatch(setDetactedLanguage(languageName));
     } catch (error) {
       console.log(error);
     }
   }, [code, editorState.language]);
 
-  useEffect(() => {
-    if (editorState.language) {
-      const { value } = hljs.highlight(code, {
-        language:
-          getLanguageNameByClassName(customLanguages, editorState.language) ||
-          "javascript",
-        ignoreIllegals: true,
-      });
-      codeRef.current.innerHTML = value;
-    }
-  }, [editorState.language]);
+  // useEffect(() => {
+  //   if (editorState.language) {
+  //     const { value } = hljs.highlight(code, {
+  //       language:
+  //         getLanguageNameByClassName(customLanguages, editorState.language) ||
+  //         "javascript",
+  //       ignoreIllegals: true,
+  //     });
+  //     codeRef.current.innerHTML = value;
+  //   }
+  // }, [editorState.language]);
 
   return (
     <div
@@ -89,9 +112,7 @@ export default function CodeHighlighter({
       className="hljs"
     >
       <pre className={cn("hljs-pre hljs", className)}>
-        <code className="hljs hljs-codes" ref={codeRef}>
-          {code}
-        </code>
+        <code className="hljs hljs-codes" ref={codeRef} />
       </pre>
     </div>
   );

@@ -2,6 +2,7 @@
 import { LanguagesT } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { customLanguages } from "./supportedCodeLanguage";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -44,4 +45,10 @@ export const getLanguageNameByClassName = (
   return Object.keys(languages).find(
     (key) => languages[key].className === className && languages[key].name,
   ) as string;
+};
+
+export const getLanguageName = (name: string) => {
+  return Object.keys(customLanguages).find((value) => {
+    return customLanguages[value].name === name && customLanguages[value].name;
+  });
 };

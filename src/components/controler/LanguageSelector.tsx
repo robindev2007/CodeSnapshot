@@ -27,7 +27,7 @@ function LanguageSelector({
     <div className="grid gap-1">
       <span className="text-sm text-muted-foreground">Languages</span>
 
-      <Select onValueChange={(e) => setLanguage(e)}>
+      <Select onValueChange={(e) => changeLanguage(e)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue
             className="capitalize"
@@ -44,13 +44,7 @@ function LanguageSelector({
             {`${editorState.detactedLanguage ? editorState.detactedLanguage.toUpperCase() : "Auto"} (Auto)`}
           </SelectItem>
           {Object.keys(customLanguages).map((key) => (
-            <SelectItem
-              key={key}
-              value={getLanguageClassNameByKey(
-                customLanguages,
-                customLanguages[key].name,
-              )}
-            >
+            <SelectItem key={key} value={customLanguages[key].name}>
               {customLanguages[key].name}
             </SelectItem>
           ))}
