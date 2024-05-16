@@ -15,11 +15,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Code Snapshot",
-  description:
-    "Convert your code to butyful Snapshots using codesnapshot.vercel.app",
+  description: "Convert your code to beutyful Snapshots for free",
   manifest: "/site.webmanifest",
   metadataBase: new URL("https://codesnapshot.vercel.app"),
+  verification: {
+    google: "F34cI-FmqcyPEdSVNhug_a4m_pbKSqI6rQzQGQ-ulEs",
+  },
 };
+// <meta name="google-site-verification" content="F34cI-FmqcyPEdSVNhug_a4m_pbKSqI6rQzQGQ-ulEs" />
 export const viewport: Viewport = {
   width: "750",
   initialScale: 1,
