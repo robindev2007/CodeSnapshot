@@ -2,7 +2,7 @@
 import React from "react";
 import { getRandomCode } from "@/lib/constance";
 import Editor from "@/components/Editor/Editor";
-import Controller from "@/components/controler/Controller";
+import Controller from "@/components/controller/Controller";
 import Image from "next/image";
 import Link from "next/link";
 import TopSection from "./top-section/TopSection";

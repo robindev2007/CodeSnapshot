@@ -2,20 +2,20 @@ import React from "react";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-const SwitchWithLable = ({
+const SwitchWithLabel = ({
   defaultChecked,
-  lable,
+  label,
   className,
   onCheckedChange,
 }: {
   defaultChecked: boolean;
-  lable: string;
+  label: string;
   className?: string;
   onCheckedChange?: (value: boolean) => void;
 }) => {
   return (
     <div className={cn("grid", className)}>
-      <span className="text-xs">{lable}</span>
+      <span className="text-xs">{label}</span>
       <Switch
         defaultChecked={defaultChecked}
         onChange={(value) => console.log(value)}
@@ -26,4 +26,4 @@ const SwitchWithLable = ({
   );
 };
 
-export default SwitchWithLable;
+export default SwitchWithLabel;
