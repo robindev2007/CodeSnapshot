@@ -28,7 +28,7 @@ const Controller = () => {
     dispatch(setPadding(value));
   };
 
-  const hangleLanguageChange = (value: string) => {
+  const handleLanguageChange = (value: string) => {
     console.log(value);
     if (value === "Auto") {
       dispatch(setLanguage(undefined));
@@ -61,7 +61,7 @@ const Controller = () => {
       />
       <LanguageSelector
         editorState={editorState}
-        changeLanguage={hangleLanguageChange}
+        changeLanguage={handleLanguageChange}
       />
       <ExportOptions />
     </div>
