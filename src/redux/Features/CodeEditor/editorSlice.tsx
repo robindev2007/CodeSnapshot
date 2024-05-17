@@ -10,7 +10,7 @@ export type EditorState = {
   padding: 16 | 32 | 64 | 128;
   language: string | undefined;
   title: string;
-  detactedLanguage: string | undefined;
+  detectedLanguage: string | undefined;
   node: HTMLDivElement | undefined;
   exporting: boolean;
   codeEditorWidth?: number;
@@ -23,7 +23,7 @@ const initialState: EditorState = {
   padding: 64,
   language: undefined,
   title: "untitled-1",
-  detactedLanguage: undefined,
+  detectedLanguage: undefined,
   node: undefined,
   exporting: false,
 };
@@ -40,6 +40,7 @@ export const EditorSlice = createSlice({
     },
     setDarkMode: (state, action) => {
       state.darkMode = action.payload;
+      state.theme = action.payload;
     },
     setPadding: (state, action) => {
       state.padding = action.payload;
@@ -47,8 +48,8 @@ export const EditorSlice = createSlice({
     setLanguage: (state, action) => {
       state.language = action.payload;
     },
-    setDetactedLanguage: (state, action) => {
-      state.detactedLanguage = action.payload;
+    setdetectedLanguage: (state, action) => {
+      state.detectedLanguage = action.payload;
     },
     setTitle: (state, action) => {
       state.title = action.payload;
@@ -72,7 +73,7 @@ export const {
   setLanguage,
   setPadding,
   setTitle,
-  setDetactedLanguage,
+  setdetectedLanguage,
   setNode,
   setExporting,
   setCodeEditorWidth,
