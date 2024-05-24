@@ -3,7 +3,7 @@ import hljs from "highlight.js";
 
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import {
-  setDetactedLanguage,
+  setdetectedLanguage,
   setLanguage,
 } from "@/redux/Features/CodeEditor/editorSlice";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
@@ -61,11 +61,11 @@ export default function CodeHighlighter({
   useEffect(() => {
     try {
       const language =
-        editorState.language || editorState.detactedLanguage || null;
+        editorState.language || editorState.detectedLanguage || null;
       highlightCode({ codeLanguage: language });
 
       const detactedCode = hljs.highlightAuto(code);
-      dispatch(setDetactedLanguage(detactedCode.language));
+      dispatch(setdetectedLanguage(detactedCode.language));
 
       // if (editorState.language) {
       //   const { value } = hljs.highlight(code, {
@@ -84,7 +84,7 @@ export default function CodeHighlighter({
       //     return customLanguages[value].className;
       // });
 
-      // dispatch(setDetactedLanguage(languageName));
+      // dispatch(setdetectedLanguage(languageName));
     } catch (error) {
       console.log(error);
     }

@@ -12,7 +12,7 @@ import ThemeSelector from "./ThemeSelector";
 import PaddingSelector from "./PaddingSelector";
 import LanguageSelector from "./LanguageSelector";
 import ExportOptions from "./ExportOptions";
-import SwitchWithLable from "../ui/switch-with-lable";
+import SwitchWithLabel from "../ui/switch-with-label";
 
 const Controller = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ const Controller = () => {
     dispatch(setPadding(value));
   };
 
-  const hangleLanguageChange = (value: string) => {
+  const handleLanguageChange = (value: string) => {
     console.log(value);
     if (value === "Auto") {
       dispatch(setLanguage(undefined));
@@ -44,14 +44,14 @@ const Controller = () => {
         setEditorTheme={setEditorTheme}
         editorState={editorState}
       />
-      <SwitchWithLable
+      <SwitchWithLabel
         defaultChecked
-        lable="Background"
+        label="Background"
         onCheckedChange={(e) => dispatch(setBackground(e))}
       />
-      <SwitchWithLable
+      <SwitchWithLabel
         defaultChecked
-        lable="Dark Mode"
+        label="Dark Mode"
         onCheckedChange={(e) => dispatch(setDarkMode(e))}
       />
       <PaddingSelector
@@ -61,7 +61,7 @@ const Controller = () => {
       />
       <LanguageSelector
         editorState={editorState}
-        changeLanguage={hangleLanguageChange}
+        changeLanguage={handleLanguageChange}
       />
       <ExportOptions />
     </div>

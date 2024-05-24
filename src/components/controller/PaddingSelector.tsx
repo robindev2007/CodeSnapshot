@@ -13,7 +13,7 @@ function PaddingSelector({
 }) {
   return (
     <div className="grid shrink-0 gap-1">
-      <span className="text-sm text-muted-foreground">Select Language</span>
+      <span className="text-sm text-muted-foreground">Set Padding</span>
       <div className="grid grid-cols-4 gap-1">
         {paddingList.map((padding) => (
           <Button

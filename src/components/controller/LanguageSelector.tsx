@@ -32,8 +32,8 @@ function LanguageSelector({
           <SelectValue
             className="capitalize"
             placeholder={
-              editorState.detactedLanguage
-                ? editorState.detactedLanguage + " (Auto)"
+              editorState.detectedLanguage
+                ? editorState.detectedLanguage + " (Auto)"
                 : "auto"
             }
           />
@@ -41,7 +41,7 @@ function LanguageSelector({
 
         <SelectContent>
           <SelectItem key={"Auto"} value="Auto">
-            {`${editorState.detactedLanguage ? editorState.detactedLanguage.toUpperCase() : "Auto"} (Auto)`}
+            {`${editorState.detectedLanguage ? editorState.detectedLanguage.toUpperCase() : "Auto"} (Auto)`}
           </SelectItem>
           {Object.keys(customLanguages).map((key) => (
             <SelectItem key={key} value={customLanguages[key].name}>
