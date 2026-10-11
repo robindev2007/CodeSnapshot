@@ -10,8 +10,6 @@ const TopSection = () => {
 
   return (
     <div className="container flex pt-5">
-      
-
       <KeyboardShortCuts />
     </div>
   );

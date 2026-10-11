@@ -44,7 +44,7 @@ export default function Command() {
   `,
 ];
 
-export const getRandomCode = () => {
+export const getRandomCode = async () => {
   noStore();
   const random = Math.floor(Math.random() * codes.length);
 

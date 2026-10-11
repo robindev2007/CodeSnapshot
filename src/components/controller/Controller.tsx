@@ -11,7 +11,6 @@ import React from "react";
 import ThemeSelector from "./ThemeSelector";
 import PaddingSelector from "./PaddingSelector";
 import LanguageSelector from "./LanguageSelector";
-import ExportOptions from "./ExportOptions";
 import SwitchWithLabel from "../ui/switch-with-label";
 
 const Controller = () => {
@@ -63,7 +62,6 @@ const Controller = () => {
         editorState={editorState}
         changeLanguage={handleLanguageChange}
       />
-      <ExportOptions />
     </div>
   );
 };

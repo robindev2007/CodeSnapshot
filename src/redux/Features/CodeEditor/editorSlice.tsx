@@ -13,6 +13,7 @@ export type EditorState = {
   detectedLanguage: string | undefined;
   node: HTMLDivElement | undefined;
   exporting: boolean;
+  exportSize: number;
   codeEditorWidth?: number;
 };
 
@@ -26,6 +27,7 @@ const initialState: EditorState = {
   detectedLanguage: undefined,
   node: undefined,
   exporting: false,
+  exportSize: 2,
 };
 
 export const EditorSlice = createSlice({
@@ -60,6 +62,9 @@ export const EditorSlice = createSlice({
     setExporting: (state, action) => {
       state.exporting = action.payload;
     },
+    setExportSize: (state, action) => {
+      state.exportSize = action.payload;
+    },
     setCodeEditorWidth: (state, acton) => {
       state.codeEditorWidth = acton.payload;
     },
@@ -76,6 +81,7 @@ export const {
   setdetectedLanguage,
   setNode,
   setExporting,
+  setExportSize,
   setCodeEditorWidth,
 } = EditorSlice.actions;
 

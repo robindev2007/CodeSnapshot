@@ -41,4 +41,16 @@ export const DomToImage = {
       },
     });
   },
+  blob: (node: HTMLDivElement, scale?: number) => {
+    return nodeToImage.toBlob(node, {
+      height: node.offsetHeight * (scale ? scale : 2),
+      width: node.offsetWidth * (scale ? scale : 2),
+      style: {
+        transform: `scale(${scale ? scale : 2})`,
+        transformOrigin: "top left",
+        alignItems: "start",
+        justifyContent: "start",
+      },
+    });
+  },
 };

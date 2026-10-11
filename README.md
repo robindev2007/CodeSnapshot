@@ -19,7 +19,7 @@
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fhoppscotch.io&logo=hoppscotch)](https://codesnapshot.vercel.app)
 
   </p>
- 
+
   <br />
   <p>
     <a href="https://codesnapshot.vercel.app">
@@ -30,7 +30,6 @@
       </picture>
     </a>
   </p>
-
 
 </div>
 
