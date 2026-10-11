@@ -72,8 +72,25 @@
   }
 }
 
-.hljs-codes,
-.hljs-pre,
+.code-textarea {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  caret-color: #ffffff;
+  resize: none;
+}
+
+.code-textarea::selection {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.code-textarea::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
 .code-textarea,
 .shiki,
 pre.shiki,
@@ -85,6 +102,9 @@ pre.shiki code {
   tab-size: 2;
   white-space: pre-wrap !important;
   word-break: break-all !important;
+  box-sizing: border-box !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
 pre.shiki {
@@ -92,15 +112,18 @@ pre.shiki {
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
+  border: 0 !important;
 }
 
 pre.shiki code {
   background-color: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
+  border: 0 !important;
 }
 
 pre.shiki .line {
+  display: block;
   min-height: 1.6em;
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useRef } from "react";
+import React, { ChangeEvent, useEffect, useRef } from "react";
 import CodeHighlighter from "./CodeHilighter";
 
 interface EditorBodyProps {
@@ -11,6 +11,7 @@ interface EditorBodyProps {
 
 const EditorBody = ({ code, setCode }: EditorBodyProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const highlighterRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<HTMLDivElement>(null);
 
   const handleSetCode = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -34,6 +35,21 @@ const EditorBody = ({ code, setCode }: EditorBodyProps) => {
     }
   };
 
+  const handleScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    if (highlighterRef.current) {
+      highlighterRef.current.scrollTop = e.currentTarget.scrollTop;
+      highlighterRef.current.scrollLeft = e.currentTarget.scrollLeft;
+    }
+  };
+
+  // Auto-resize textarea to fit content so it never scrolls independently
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [code]);
+
   return (
     <div
       ref={editorRef}
@@ -41,10 +57,11 @@ const EditorBody = ({ code, setCode }: EditorBodyProps) => {
     >
       <textarea
         ref={textareaRef}
-        className="code-textarea z-10 col-start-1 col-end-1 row-start-1 row-end-1 m-0 h-full resize-none bg-transparent bg-scroll p-3 pb-0 align-text-top text-transparent caret-white outline-none"
+        className="code-textarea z-10 col-start-1 col-end-1 row-start-1 row-end-1 m-0 h-full w-full resize-none bg-transparent p-4 align-text-top outline-none"
         value={code}
         onChange={handleSetCode}
         onKeyDown={handleKeyDown}
+        onScroll={handleScroll}
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
@@ -52,7 +69,10 @@ const EditorBody = ({ code, setCode }: EditorBodyProps) => {
         data-enable-grammarly="false"
       />
 
-      <div className="pointer-events-none col-start-1 col-end-1 row-start-1 row-end-1 m-0 p-3 pb-0 select-none">
+      <div
+        ref={highlighterRef}
+        className="pointer-events-none col-start-1 col-end-1 row-start-1 row-end-1 m-0 w-full overflow-hidden p-4 select-none"
+      >
         <CodeHighlighter code={code} />
       </div>
     </div>
