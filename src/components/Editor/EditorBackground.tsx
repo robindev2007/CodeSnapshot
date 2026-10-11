@@ -1,7 +1,7 @@
 import { customThemes } from "@/lib/Themes";
 import { cn } from "@/lib/utils";
 import { EditorState } from "@/redux/Features/CodeEditor/editorSlice";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 const EditorBackground = ({
   editorState,
@@ -19,7 +19,7 @@ const EditorBackground = ({
       style={{
         padding: `${editorState.padding}px`,
         background: editorState.background
-          ? `linear-gradient(140deg,${customThemes[editorState.theme].background.from},${customThemes[editorState.theme].background.to}`
+          ? `linear-gradient(140deg,${customThemes[editorState.theme]?.background?.from},${customThemes[editorState.theme]?.background?.to})`
           : "transparent",
       }}
     >

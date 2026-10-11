@@ -20,6 +20,9 @@
     "@radix-ui/react-toast": "^1.2.24",
     "@radix-ui/react-tooltip": "^1.3.0",
     "@reduxjs/toolkit": "^2.13.0",
+    "@shikijs/langs": "^4.5.0",
+    "@shikijs/themes": "^4.5.0",
+    "@vscode/vscode-languagedetection": "^1.0.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -38,6 +41,7 @@
     "react-resizable-panels": "^2.1.9",
     "react-syntax-highlighter": "^15.6.6",
     "sharp": "^0.33.5",
+    "shiki": "^4.5.0",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.1",
     "tailwindcss-animate": "^1.0.7"

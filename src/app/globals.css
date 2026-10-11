@@ -74,14 +74,34 @@
 
 .hljs-codes,
 .hljs-pre,
-.code-textarea {
+.code-textarea,
+.shiki,
+pre.shiki,
+pre.shiki code {
   text-size-adjust: none;
+  font-family: var(--font-jet), "JetBrains Mono", monospace !important;
+  font-size: 14px;
+  line-height: 1.6;
+  tab-size: 2;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
 }
 
-.hljs-codes,
-.hljs-pre,
-.code-textarea {
-  @apply overflow-hidden whitespace-pre-wrap !font-jet font-medium;
+pre.shiki {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+pre.shiki code {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+pre.shiki .line {
+  min-height: 1.6em;
 }
 
 *::-webkit-scrollbar {

@@ -1,17 +1,30 @@
-import { customThemes } from "@/lib/Themes";
-
 export type ThemesNameT =
-  | "mono"
-  | "breeze"
   | "candy"
+  | "breeze"
+  | "midnight"
+  | "sunset"
   | "crimson"
   | "falcon"
   | "meadow"
-  | "midnight"
   | "raindrop"
-  | "sunset";
+  | "mono"
+  | "dracula"
+  | "tokyoNight"
+  | "nord"
+  | "oneDark"
+  | "catppuccin"
+  | "synthwave"
+  | "githubDark";
 
-export type ThemeT = typeof customThemes.candy;
+export interface ThemeConfig {
+  name: string;
+  shikiTheme: string;
+  shikiThemeLight?: string;
+  background: {
+    from: string;
+    to: string;
+  };
+}
 
 export type LanguagesT = {
   [key: string]: {

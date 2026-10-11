@@ -1,27 +1,37 @@
-import React, {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  TextareaHTMLAttributes,
-  useRef,
-  useState,
-} from "react";
+"use client";
+
+import React, { ChangeEvent, useRef } from "react";
 import CodeHighlighter from "./CodeHilighter";
 
-const EditorBody = ({
-  code,
-  setCode,
-  theme,
-}: {
+interface EditorBodyProps {
   code: string;
   setCode: (code: string) => void;
   theme?: "dark" | "lite";
-}) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null!);
-  const editorRef = useRef<HTMLDivElement>(null!);
+}
+
+const EditorBody = ({ code, setCode }: EditorBodyProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const handleSetCode = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCode(e.target.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const textarea = textareaRef.current;
+      if (!textarea) return;
+
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const updated = code.substring(0, start) + "  " + code.substring(end);
+      setCode(updated);
+
+      requestAnimationFrame(() => {
+        textarea.selectionStart = textarea.selectionEnd = start + 2;
+      });
+    }
   };
 
   return (
@@ -31,9 +41,10 @@ const EditorBody = ({
     >
       <textarea
         ref={textareaRef}
-        className="code-textarea z-10 col-start-1 col-end-1 row-start-1 row-end-1 m-0 h-full resize-none bg-transparent bg-scroll p-3 pb-0 align-text-top text-red-400/0 caret-white"
+        className="code-textarea z-10 col-start-1 col-end-1 row-start-1 row-end-1 m-0 h-full resize-none bg-transparent bg-scroll p-3 pb-0 align-text-top text-transparent caret-white outline-none"
         value={code}
         onChange={handleSetCode}
+        onKeyDown={handleKeyDown}
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
@@ -41,15 +52,8 @@ const EditorBody = ({
         data-enable-grammarly="false"
       />
 
-      <div className="col-start-1 col-end-1 row-start-1 row-end-1 m-0 p-3 pb-0">
-        <CodeHighlighter
-          theme={theme}
-          code={
-            code +
-            `
-        `
-          }
-        />
+      <div className="pointer-events-none col-start-1 col-end-1 row-start-1 row-end-1 m-0 p-3 pb-0 select-none">
+        <CodeHighlighter code={code} />
       </div>
     </div>
   );

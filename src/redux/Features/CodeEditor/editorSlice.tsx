@@ -42,7 +42,6 @@ export const EditorSlice = createSlice({
     },
     setDarkMode: (state, action) => {
       state.darkMode = action.payload;
-      state.theme = action.payload;
     },
     setPadding: (state, action) => {
       state.padding = action.payload;
