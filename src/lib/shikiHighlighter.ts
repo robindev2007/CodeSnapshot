@@ -16,9 +16,16 @@ const DEFAULT_THEMES = [
   "github-dark",
   "github-light",
   "one-dark-pro",
+  "one-light",
   "synthwave-84",
   "vitesse-dark",
   "vitesse-light",
+  "vitesse-black",
+  "vesper",
+  "poimandres",
+  "material-theme-palenight",
+  "gruvbox-dark-medium",
+  "gruvbox-light-medium",
 ];
 
 const DEFAULT_LANGUAGES = [
