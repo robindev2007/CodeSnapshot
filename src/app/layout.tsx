@@ -1,10 +1,9 @@
+import Providers from "@/redux/provider";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import Providers from "@/redux/provider";
-import { Toaster } from "sonner";
 import Image from "next/image";
+import { Toaster } from "sonner";
+import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -37,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${jetbrainsMono.variable} min-h-screen`}
+        className={`${inter.className} ${jetbrainsMono.variable} min-h-screen w-full`}
       >
         <Providers>
           <Toaster theme="dark" richColors position="top-right" />

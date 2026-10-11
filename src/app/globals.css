@@ -108,3 +108,9 @@
 *::-webkit-scrollbar-thumb:active {
   @apply rounded-md bg-[#5a5a66];
 }
+
+body[data-scroll-locked] {
+  overflow: unset !important;
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+}
