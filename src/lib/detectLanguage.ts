@@ -113,7 +113,18 @@ export function detectLanguage(code: string): DetectResult {
     return { languageKey: "yaml", name: "YAML", confidence: 0.82 };
   }
 
-  // 16. JavaScript (Default for modern web)
+  // 16. Swift
+  if (/\b(import\s+SwiftUI|import\s+Foundation|import\s+UIKit|struct\s+[A-Za-z0-9_]+\s*:\s*(View|UIViewController)|var\s+body\s*:\s*some\s+View|@State\b|@Binding\b|@ObservedObject\b|@EnvironmentObject\b|func\s+[a-z][a-zA-Z0-9_]*\(.*?\)\s*->\s*[A-Za-z])\b/.test(trimmed)) {
+    return { languageKey: "swift", name: "Swift", confidence: 0.95 };
+  }
+
+  // 17. Kotlin
+  if (/\b(fun\s+main\s*\(|fun\s+[a-z][a-zA-Z0-9_]*\s*\(|data\s+class\s+|val\s+|var\s+.+:\s*[A-Z]|println\s*\(|object\s+[A-Za-z0-9_]+)\b/.test(trimmed) &&
+      !trimmed.includes("function ") && !trimmed.includes("const ")) {
+    return { languageKey: "kotlin", name: "Kotlin", confidence: 0.90 };
+  }
+
+  // 18. JavaScript (Default for modern web)
   if (/\b(const|let|var|function|return|console\.log|import|export|await|async|class)\b/.test(trimmed)) {
     return { languageKey: "javascript", name: "JavaScript", confidence: 0.85 };
   }
