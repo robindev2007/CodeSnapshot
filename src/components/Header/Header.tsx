@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import ExportOptions from "@/components/controller/ExportOptions";
 import KeyboardShortCuts from "@/app/_components/top-section/KeyboardShortCuts";
+import ExportOptions from "@/components/controller/ExportOptions";
 import { CameraIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 w-full border-b border-border bg-background shadow-sm">
+    <header className="fixed inset-x-0 top-0 z-40 w-full bg-background shadow-sm">
       <div className="container flex h-16 items-center justify-between gap-4">
         {/* Left: Website Name & Shortcuts */}
         <div className="flex items-center gap-4">
