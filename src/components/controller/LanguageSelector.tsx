@@ -70,6 +70,10 @@ function LanguageSelector({
                     changeLanguage("Auto");
                     setOpen(false);
                   }}
+                  onClick={() => {
+                    changeLanguage("Auto");
+                    setOpen(false);
+                  }}
                   className="flex cursor-pointer items-center justify-between py-1.5 text-xs"
                 >
                   <span>{autoLabel}</span>
@@ -85,6 +89,10 @@ function LanguageSelector({
                       key={key}
                       value={`${lang.name} ${key}`}
                       onSelect={() => {
+                        changeLanguage(lang.name);
+                        setOpen(false);
+                      }}
+                      onClick={() => {
                         changeLanguage(lang.name);
                         setOpen(false);
                       }}

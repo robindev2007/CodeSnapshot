@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${jetbrainsMono.variable} min-h-screen w-full`}
+        className={`${inter.className} ${jetbrainsMono.variable} min-h-screen w-screen overflow-x-hidden`}
       >
         <Providers>
           <Toaster theme="dark" richColors position="top-right" />

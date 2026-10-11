@@ -75,6 +75,10 @@ const ThemeSelector = ({ setEditorTheme, editorState }: ThemeSelectorProps) => {
                         setEditorTheme(themeKey);
                         setOpen(false);
                       }}
+                      onClick={() => {
+                        setEditorTheme(themeKey);
+                        setOpen(false);
+                      }}
                       className="flex cursor-pointer items-center justify-between py-1.5 text-xs"
                     >
                       <div className="flex items-center gap-2">
