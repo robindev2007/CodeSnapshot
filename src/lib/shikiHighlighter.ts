@@ -133,8 +133,14 @@ export async function highlightCodeWithShiki(
     ? theme
     : "catppuccin-mocha";
 
-  return highlighter.codeToHtml(code, {
+  const raw = highlighter.codeToHtml(code, {
     lang: safeLang,
     theme: safeTheme,
   });
+
+  // Shiki inserts a literal \n between every </span><span class="line"> inside <code>.
+  // With white-space: pre-wrap those text nodes render as real line breaks,
+  // doubling the visual height of the layer vs the textarea.
+  // Strip them so each .line span is the sole source of line spacing.
+  return raw.replace(/(<\/span>)\n(<span class="line")/g, "$1$2");
 }
