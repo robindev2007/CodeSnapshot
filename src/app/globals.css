@@ -1,12 +1,13 @@
+@import url("./styles/hljs.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("./styles/hljs.css");
-
 :root {
   color-scheme: dark;
-  --strips: linear-gradient(45deg, #1d1d1d 25%, transparent 0),
+  --strips:
+    linear-gradient(45deg, #1d1d1d 25%, transparent 0),
     linear-gradient(-45deg, #1d1d1d 25%, transparent 0),
     linear-gradient(45deg, transparent 75%, #1d1d1d 0),
     linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
@@ -38,22 +39,23 @@
 
     --frame-shadow-border: rgba(0, 0, 0, 0.1);
     --frame-highlight-border: hsla(0, 0%, 100%, 0.75);
-    --mac-shadow: 0 0 0 1px var(--frame-highlight-border),
-      0 0 0 1.5px var(--frame-shadow-border), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-      0 100px 80px rgba(0, 0, 0, 0.12);
+    --mac-shadow:
+      0 0 0 1px var(--frame-highlight-border),
+      0 0 0 1.5px var(--frame-shadow-border),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
   }
   .dark {
     --editor-background: 0 0% 0%;
 
     --frame-shadow-border: rgba(0, 0, 0, 0.8);
     --frame-highlight-border: hsla(0, 0%, 100%, 0.3);
-    --mac-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3),
-      0 0 0 1.5px hsla(0, 0%, 0%, 0.8), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-      0 100px 80px rgba(0, 0, 0, 0.12);
+    --mac-shadow:
+      0 0 0 1px hsla(0, 0%, 100%, 0.3), 0 0 0 1.5px hsla(0, 0%, 0%, 0.8),
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -70,16 +72,59 @@
   }
 }
 
-.hljs-codes,
-.hljs-pre,
 .code-textarea {
-  text-size-adjust: none;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  caret-color: #ffffff;
+  resize: none;
 }
 
-.hljs-codes,
-.hljs-pre,
-.code-textarea {
-  @apply overflow-hidden whitespace-pre-wrap !font-jet font-medium;
+.code-textarea::selection {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.code-textarea::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.code-textarea,
+.shiki,
+pre.shiki,
+pre.shiki code {
+  text-size-adjust: none;
+  font-family: var(--font-jet), "JetBrains Mono", monospace !important;
+  font-size: 14px;
+  line-height: 1.6;
+  tab-size: 2;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  box-sizing: border-box !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+pre.shiki {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+}
+
+pre.shiki code {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+pre.shiki .line {
+  display: block;
+  min-height: 1.6em;
 }
 
 *::-webkit-scrollbar {
@@ -105,4 +150,10 @@
 
 *::-webkit-scrollbar-thumb:active {
   @apply rounded-md bg-[#5a5a66];
+}
+
+body[data-scroll-locked] {
+  overflow: unset !important;
+  padding-right: 0px !important;
+  margin-right: 0px !important;
 }

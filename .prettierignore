@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+build
+coverage
+bun.lock
+package-lock.json
+next-env.d.ts

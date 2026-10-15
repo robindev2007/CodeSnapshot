@@ -1,55 +1,115 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
-  EditorState,
-  setLanguage,
-} from "@/redux/Features/CodeEditor/editorSlice";
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
 import { customLanguages } from "@/lib/supportedCodeLanguage";
-import { getLanguageClassNameByKey } from "@/lib/utils";
+import { EditorState } from "@/redux/Features/CodeEditor/editorSlice";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+
+interface LanguageSelectorProps {
+  editorState: EditorState;
+  changeLanguage: (value: string) => void;
+}
 
 function LanguageSelector({
   editorState,
   changeLanguage,
-}: {
-  editorState: EditorState;
-  changeLanguage: (value: string) => void;
-}) {
-  const dispatch = useAppDispatch();
+}: LanguageSelectorProps) {
+  const [open, setOpen] = useState(false);
+
+  const currentLabel = editorState.language
+    ? editorState.language
+    : editorState.detectedLanguage
+      ? `${editorState.detectedLanguage.toUpperCase()} (Auto)`
+      : "Auto";
+
+  const autoLabel = editorState.detectedLanguage
+    ? `${editorState.detectedLanguage.toUpperCase()} (Auto)`
+    : "Auto";
 
   return (
-    <div className="grid gap-1">
-      <span className="text-sm text-muted-foreground">Languages</span>
+    <div className="grid gap-1 text-sm">
+      <span className="text-sm text-muted-foreground">Language</span>
 
-      <Select onValueChange={(e) => changeLanguage(e)}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue
-            className="capitalize"
-            placeholder={
-              editorState.detectedLanguage
-                ? editorState.detectedLanguage + " (Auto)"
-                : "auto"
-            }
-          />
-        </SelectTrigger>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            role="combobox"
+            aria-expanded={open}
+            className="flex h-9 min-w-[140px] items-center justify-between gap-2 px-3 text-xs font-normal"
+          >
+            <span className="truncate font-medium">{currentLabel}</span>
+            <CaretSortIcon className="h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
 
-        <SelectContent>
-          <SelectItem key={"Auto"} value="Auto">
-            {`${editorState.detectedLanguage ? editorState.detectedLanguage.toUpperCase() : "Auto"} (Auto)`}
-          </SelectItem>
-          {Object.keys(customLanguages).map((key) => (
-            <SelectItem key={key} value={customLanguages[key].name}>
-              {customLanguages[key].name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <PopoverContent className="w-56 p-0" align="start">
+          <Command>
+            <CommandInput placeholder="Search language..." />
+            <CommandList>
+              <CommandEmpty>No language found.</CommandEmpty>
+              <CommandGroup>
+                <CommandItem
+                  value={`auto ${editorState.detectedLanguage || ""}`}
+                  onSelect={() => {
+                    changeLanguage("Auto");
+                    setOpen(false);
+                  }}
+                  onClick={() => {
+                    changeLanguage("Auto");
+                    setOpen(false);
+                  }}
+                  className="flex cursor-pointer items-center justify-between py-1.5 text-xs"
+                >
+                  <span>{autoLabel}</span>
+                  {!editorState.language && (
+                    <CheckIcon className="h-3.5 w-3.5 text-primary" />
+                  )}
+                </CommandItem>
+                {Object.keys(customLanguages).map((key) => {
+                  const lang = customLanguages[key];
+                  const isSelected = editorState.language === lang.name;
+                  return (
+                    <CommandItem
+                      key={key}
+                      value={`${lang.name} ${key}`}
+                      onSelect={() => {
+                        changeLanguage(lang.name);
+                        setOpen(false);
+                      }}
+                      onClick={() => {
+                        changeLanguage(lang.name);
+                        setOpen(false);
+                      }}
+                      className="flex cursor-pointer items-center justify-between py-1.5 text-xs"
+                    >
+                      <span>{lang.name}</span>
+                      {isSelected && (
+                        <CheckIcon className="h-3.5 w-3.5 text-primary" />
+                      )}
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }

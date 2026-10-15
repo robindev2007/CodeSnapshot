@@ -11,7 +11,6 @@ import React from "react";
 import ThemeSelector from "./ThemeSelector";
 import PaddingSelector from "./PaddingSelector";
 import LanguageSelector from "./LanguageSelector";
-import ExportOptions from "./ExportOptions";
 import SwitchWithLabel from "../ui/switch-with-label";
 
 const Controller = () => {
@@ -39,7 +38,7 @@ const Controller = () => {
   };
 
   return (
-    <div className="mx-auto flex w-max max-w-full shrink-0 gap-3 overflow-auto rounded border bg-card/90 p-3 backdrop-blur">
+    <div className="mx-auto flex w-max max-w-full shrink-0 gap-3 overflow-auto rounded-b-none rounded-t-lg border border-b-0 bg-card/90 p-3 shadow-lg backdrop-blur">
       <ThemeSelector
         setEditorTheme={setEditorTheme}
         editorState={editorState}
@@ -63,7 +62,6 @@ const Controller = () => {
         editorState={editorState}
         changeLanguage={handleLanguageChange}
       />
-      <ExportOptions />
     </div>
   );
 };

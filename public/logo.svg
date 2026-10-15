@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="45%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="innerGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.15)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+
+    <!-- Syntax token gradients -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    
+    <linearGradient id="slashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </linearGradient>
+
+    <!-- Ambient glow filter -->
+    <filter id="ambientGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="28" result="blur" />
+    </filter>
+  </defs>
+
+  <!-- Squircle Base with high-end tech styling -->
+  <rect x="20" y="20" width="472" height="472" rx="112" fill="url(#bgGrad)" />
+  <rect x="20" y="20" width="472" height="472" rx="112" fill="none" stroke="url(#innerGlow)" stroke-width="3" />
+
+  <!-- Subtle glow beneath tokens -->
+  <g filter="url(#ambientGlow)" opacity="0.45">
+    <path d="M 185 175 L 105 256 L 185 337" fill="none" stroke="#38bdf8" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 295 145 L 217 367" fill="none" stroke="#818cf8" stroke-width="44" stroke-linecap="round" />
+    <path d="M 327 175 L 407 256 L 327 337" fill="none" stroke="#f43f5e" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Foreground crisp Syntax glyphs -->
+  <g>
+    <!-- Left Angle Bracket < (representing code input / cyan token) -->
+    <path d="M 185 175 L 105 256 L 185 337" 
+          fill="none" 
+          stroke="url(#cyanGrad)" 
+          stroke-width="38" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+
+    <!-- Center Slash / (representing syntax parser / violet token) -->
+    <path d="M 295 145 L 217 367" 
+          fill="none" 
+          stroke="url(#slashGrad)" 
+          stroke-width="38" 
+          stroke-linecap="round" />
+
+    <!-- Right Angle Bracket > (representing code output / rose token) -->
+    <path d="M 327 175 L 407 256 L 327 337" 
+          fill="none" 
+          stroke="url(#pinkGrad)" 
+          stroke-width="38" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>

@@ -1,119 +1,89 @@
-import React, { useEffect, useRef, useState } from "react";
-import hljs from "highlight.js";
+"use client";
 
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import {
-  setdetectedLanguage,
-  setLanguage,
-} from "@/redux/Features/CodeEditor/editorSlice";
-import { customLanguages } from "@/lib/supportedCodeLanguage";
-import { cn, getLanguageName, getLanguageNameByClassName } from "@/lib/utils";
+import React, { useEffect, useState, useTransition } from "react";
 import { customThemes } from "@/lib/Themes";
+import { detectLanguage } from "@/lib/detectLanguage";
+import {
+  escapeHtml,
+  highlightCodeWithShiki,
+} from "@/lib/shikiHighlighter";
+import { cn } from "@/lib/utils";
+import { setdetectedLanguage } from "@/redux/Features/CodeEditor/editorSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+
+interface CodeHighlighterProps {
+  code: string;
+  className?: string;
+  theme?: "dark" | "lite";
+}
 
 export default function CodeHighlighter({
   code,
   className,
-}: {
-  code: string;
-  className?: string;
-  theme?: "dark" | "lite";
-}) {
-  const codeRef = useRef<HTMLDivElement>(null!);
+}: CodeHighlighterProps) {
+  const [html, setHtml] = useState<string>(() => {
+    // Initial fallback while Shiki initializes
+    return `<pre class="shiki" style="background-color:transparent"><code>${escapeHtml(code)}</code></pre>`;
+  });
+  const [, startTransition] = useTransition();
 
   const editorState = useAppSelector((state) => state.editor);
   const dispatch = useAppDispatch();
 
-  const highlightCode = ({
-    codeLanguage,
-  }: {
-    codeLanguage?: string | null;
-  }) => {
-    if (!codeLanguage || !codeRef.current) {
-      const { language, value } = hljs.highlightAuto(code);
-      codeRef.current.innerHTML = value;
-      return;
-    }
-
-    console.log(codeLanguage);
-    const { value, language } = hljs.highlight(code, {
-      language: getLanguageName(codeLanguage) || "javascript",
-      ignoreIllegals: true,
-    });
-
-    console.log(value);
-
-    codeRef.current.innerHTML = value;
-  };
-  // configure hljs
+  // 1. Language determination & auto-detection
   useEffect(() => {
-    try {
-      hljs.configure({
-        languages: Object.keys(customLanguages).map(
-          (language) => customLanguages[language].name,
-        ),
+    if (!editorState.language) {
+      // Auto-detect language
+      const detected = detectLanguage(code);
+      dispatch(setdetectedLanguage(detected.name));
+    }
+  }, [code, editorState.language, dispatch]);
+
+  // 2. Syntax Highlighting
+  useEffect(() => {
+    let isCancelled = false;
+
+    const themeKey = editorState.theme || "candy";
+    const themeConfig = customThemes[themeKey] || customThemes.candy;
+    const shikiTheme = editorState.darkMode
+      ? themeConfig.shikiTheme
+      : themeConfig.shikiThemeLight || themeConfig.shikiTheme;
+
+    const rawLang =
+      editorState.language || editorState.detectedLanguage || "javascript";
+
+    highlightCodeWithShiki(code, rawLang, shikiTheme)
+      .then((highlightedHtml) => {
+        if (!isCancelled) {
+          startTransition(() => {
+            setHtml(highlightedHtml);
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Shiki highlight error:", err);
+        if (!isCancelled) {
+          setHtml(
+            `<pre class="shiki" style="background-color:transparent"><code>${escapeHtml(code)}</code></pre>`,
+          );
+        }
       });
-      highlightCode({});
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
-  useEffect(() => {
-    try {
-      const language =
-        editorState.language || editorState.detectedLanguage || null;
-      highlightCode({ codeLanguage: language });
-
-      const detactedCode = hljs.highlightAuto(code);
-      dispatch(setdetectedLanguage(detactedCode.language));
-
-      // if (editorState.language) {
-      //   const { value } = hljs.highlight(code, {
-      //     language:
-      //       getLanguageNameByClassName(customLanguages, editorState.language) ||
-      //       "javascript",
-      //     ignoreIllegals: true,
-      //   });
-      //   codeRef.current.innerHTML = value;
-      // }
-
-      // if (code.trim().length === 0) return;
-
-      // const languageName = Object.keys(customLanguages).find((value) => {
-      //   if (customLanguages[value].name === language)
-      //     return customLanguages[value].className;
-      // });
-
-      // dispatch(setdetectedLanguage(languageName));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [code, editorState.language]);
-
-  // useEffect(() => {
-  //   if (editorState.language) {
-  //     const { value } = hljs.highlight(code, {
-  //       language:
-  //         getLanguageNameByClassName(customLanguages, editorState.language) ||
-  //         "javascript",
-  //       ignoreIllegals: true,
-  //     });
-  //     codeRef.current.innerHTML = value;
-  //   }
-  // }, [editorState.language]);
+    return () => {
+      isCancelled = true;
+    };
+  }, [
+    code,
+    editorState.theme,
+    editorState.language,
+    editorState.detectedLanguage,
+    editorState.darkMode,
+  ]);
 
   return (
     <div
-      style={
-        editorState.darkMode
-          ? (customThemes[editorState.theme].syntax.dark as React.CSSProperties)
-          : (customThemes[editorState.theme].syntax.dark as React.CSSProperties)
-      }
-      className="hljs"
-    >
-      <pre className={cn("hljs-pre hljs", className)}>
-        <code className="hljs hljs-codes" ref={codeRef} />
-      </pre>
-    </div>
+      className={cn("shiki-wrapper w-full", className)}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 }

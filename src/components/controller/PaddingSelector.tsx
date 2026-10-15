@@ -1,6 +1,13 @@
+"use client";
+
 import React from "react";
-import { Button } from "../ui/button";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function PaddingSelector({
   paddingList,
@@ -12,21 +19,27 @@ function PaddingSelector({
   stePadding: (value: number) => void;
 }) {
   return (
-    <div className="grid shrink-0 gap-1">
-      <span className="text-sm text-muted-foreground">Set Padding</span>
-      <div className="grid grid-cols-4 gap-1">
-        {paddingList.map((padding) => (
-          <Button
-            key={padding}
-            onClick={() => stePadding(padding)}
-            variant={editorPadding == padding ? "secondary" : "ghost"}
-            size={"sm"}
-            className="shrink-0"
-          >
-            {padding}
-          </Button>
-        ))}
-      </div>
+    <div className="grid shrink-0 gap-1 text-sm">
+      <span className="text-sm text-muted-foreground">Padding</span>
+      <Select
+        value={String(editorPadding)}
+        onValueChange={(value) => stePadding(Number(value))}
+      >
+        <SelectTrigger className="h-9 w-24 px-2.5 text-xs font-medium">
+          <SelectValue placeholder={`${editorPadding}px`} />
+        </SelectTrigger>
+        <SelectContent>
+          {paddingList.map((padding) => (
+            <SelectItem
+              key={padding}
+              value={String(padding)}
+              className="text-xs"
+            >
+              {padding}px
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 }

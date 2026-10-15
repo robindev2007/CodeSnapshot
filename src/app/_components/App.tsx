@@ -1,11 +1,7 @@
 "use server";
 import React from "react";
 import { getRandomCode } from "@/lib/constance";
-import Editor from "@/components/Editor/Editor";
-import Controller from "@/components/controller/Controller";
-import Image from "next/image";
-import Link from "next/link";
-import TopSection from "./top-section/TopSection";
+import Header from "@/components/Header/Header";
 import Footer from "./Footer";
 import MainBody from "./MainBody";
 
@@ -15,9 +11,9 @@ const App = async () => {
   return (
     <div
       id="a"
-      className="grid-row-5 grid h-screen w-screen gap-3 overflow-y-scroll"
+      className="flex min-h-screen w-screen flex-col overflow-y-auto pt-16"
     >
-      <TopSection />
+      <Header />
 
       <MainBody initialCode={initialCode} />
 

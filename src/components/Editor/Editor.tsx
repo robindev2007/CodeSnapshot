@@ -33,16 +33,18 @@ const Editor = ({ initialCode }: { initialCode: string }) => {
   };
 
   useEffect(() => {
-    nodeRef.current && dispatch(setNode(nodeRef.current));
-  }, [nodeRef.current, nodeRef]);
+    if (nodeRef.current) {
+      dispatch(setNode(nodeRef.current));
+    }
+  }, [dispatch]);
 
   return (
     <div className="relative">
-      {editorState.exporting&&
-      <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-card/90 backdrop-blur-sm">
-        <p>Exporting</p>
-      </div>
-      }
+      {editorState.exporting && (
+        <div className="absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-card/90 backdrop-blur-sm">
+          <p>Exporting</p>
+        </div>
+      )}
       <div ref={resizeableRef} className="relative">
         <Resizeable setIsResizing={setIsResizing} onResize={handleResize}>
           <div ref={nodeRef}>
@@ -69,4 +71,3 @@ const Editor = ({ initialCode }: { initialCode: string }) => {
 };
 
 export default Editor;
-
