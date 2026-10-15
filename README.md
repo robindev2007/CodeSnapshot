@@ -1,22 +1,22 @@
 <div align="center">
   <a href="https://codesnapshot.vercel.app">
     <img
-      src='https://github.com/robindev2007/CodeSnapshot/blob/main/public/android-chrome-512x512.png?raw=true'
-      alt="Hoppscotch"
+      src='public/android-chrome-512x512.png'
+      alt="Syntax"
       height="120"
     />
   </a>
   <h3>
     <b>
-     Code Snapshot
+     Syntax
     </b>
   </h3>
   <b>
-    Open Source Code to Image Snapshot generator
+    Open Source Code to Image Snapshot Generator
   </b>
   <p>
 
-![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fhoppscotch.io&logo=hoppscotch)](https://codesnapshot.vercel.app)
+![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcodesnapshot.vercel.app&logo=vercel)](https://codesnapshot.vercel.app)
 
   </p>
 
@@ -26,7 +26,7 @@
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="./images/banner.png">
         <source media="(prefers-color-scheme: light)" srcset="./images/banner.png">
-        <img alt="Hoppscotch" src="./images/banner.png">
+        <img alt="Syntax" src="./images/banner.png">
       </picture>
     </a>
   </p>
@@ -43,12 +43,12 @@
 
 ❤️ **Lightweight:** Crafted with minimalistic UI design.
 
-⚡️ **Fast:** Show preview or snapshot realtime.
+⚡️ **Fast:** Realtime code syntax highlighting and snapshot preview.
 
-🌈 **Thems:** Customize able code thees
+🌈 **Themes:** Customizable themes, syntax styles, backgrounds, and padding.
 
 🔥 **PWA:** Install as a [Progressive Web App](https://web.dev/progressive-web-apps) on your device.
 
 - Low RAM/memory and CPU usage
 - Add to Home Screen
-- Desktop PWA - ( Comming soon )
+- Desktop PWA

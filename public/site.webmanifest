@@ -1,6 +1,8 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Syntax",
+  "short_name": "Syntax",
+  "description": "Transform your code snippets into beautiful, customizable snapshots ready to share.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,7 +15,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#090d16",
+  "background_color": "#090d16",
   "display": "standalone"
 }

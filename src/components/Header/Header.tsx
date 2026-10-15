@@ -2,7 +2,7 @@
 
 import KeyboardShortCuts from "@/app/_components/top-section/KeyboardShortCuts";
 import ExportOptions from "@/components/controller/ExportOptions";
-import { CameraIcon } from "@radix-ui/react-icons";
+import SyntaxLogo from "@/components/Logo/SyntaxLogo";
 import Link from "next/link";
 
 export const Header = () => {
@@ -13,13 +13,11 @@ export const Header = () => {
         <div className="flex items-center gap-4">
           <Link
             href="/"
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
+            className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
-              <CameraIcon className="h-5 w-5" />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-foreground">
-              Code Snapshot
+            <SyntaxLogo className="h-8 w-8 transition-transform group-hover:scale-105" />
+            <span className="text-xl font-bold tracking-tight text-foreground">
+              Syntax
             </span>
           </Link>
           <div className="hidden sm:block">

@@ -58,7 +58,7 @@ export function ExportOptions({ className }: ExportOptionsProps) {
       } else {
         dataUrl = await DomToImage.png(node, scale);
       }
-      const filename = `${editorState.title || "code-snapshot"}.${format}`;
+      const filename = `${editorState.title || "syntax"}.${format}`;
       saveFile(dataUrl, filename);
       toast.success(`${format.toUpperCase()} downloaded (${scale}x)`);
     } catch (error) {
