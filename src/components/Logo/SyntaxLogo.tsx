@@ -129,3 +129,4 @@ export const SyntaxLogo: React.FC<SyntaxLogoProps> = ({
 };
 
 export default SyntaxLogo;
+
